@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:golf_regist_app/entity/user.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController idController = TextEditingController();
@@ -7,8 +8,24 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({Key? key}) : super(key: key);
 
+  final List<User> users = [
+    User("admin", "0610"),
+    User("demo", "demo"),
+    User("user1", "0811"),
+    User("user2", "0812"),
+    User("user3", "0813"),
+  ];
+
   void _login() {
-    if (idController.text == "test1" && pwController.text == "test2") {
+    bool loginSuccessful = false;
+
+    for (User user in users) {
+      if (user.id == idController.text && user.password == pwController.text) {
+        loginSuccessful = true;
+        break;
+      }
+    }
+    if (loginSuccessful) {
       Get.offAllNamed('/reservation_page');
     } else {
       Get.snackbar('로그인에 실패했습니다.', '아이디, 비밀번호를 다시 확인해주세요.');
