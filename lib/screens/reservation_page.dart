@@ -48,7 +48,7 @@ class ReservationPage extends StatelessWidget {
       final response = await http.post(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation"),
         // 단순 예약 테스트의 경우 /login으로 변경 /reservation
-        Uri.parse("http://localhost:5000/reservation"), // 웹 버전의 경우..
+        Uri.parse("http://192.168.1.131:5000/reservation"), // 웹 버전의 경우..
         body: {
           'id': loginController.id,
           'pw': loginController.pw,

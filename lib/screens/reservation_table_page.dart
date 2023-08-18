@@ -24,7 +24,7 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
     try {
       final response = await http.get(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation_table"),
-        Uri.parse("http://localhost:5000/reservation_table"),
+        Uri.parse("http://192.168.1.131:5000/reservation_table"),
       );
 
       if (response.statusCode == 200) {
@@ -49,7 +49,7 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
     try {
       final response = await http.delete(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation_cancel/$id"),
-        Uri.parse("http://localhost:5000/reservation_cancel/$id"),
+        Uri.parse("http://192.168.1.131:5000/reservation_cancel/$id"),
       );
 
       if (response.statusCode == 200) {
