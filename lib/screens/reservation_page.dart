@@ -33,8 +33,9 @@ class ReservationPage extends StatelessWidget {
 
   Future<void> _submit(BuildContext context) async {
     if (calendarController.isWeekendSelected.value) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('주말 예약 접수는 불가능합니다.')));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text('주말 예약 접수는 불가능합니다.')));
+      Get.snackbar("notice", '주말 예약 접수는 불가능합니다.');
       return;
     }
 
@@ -48,7 +49,7 @@ class ReservationPage extends StatelessWidget {
       final response = await http.post(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation"),
         // 단순 예약 테스트의 경우 /login으로 변경 /reservation
-        Uri.parse("http://192.168.1.131:5000/reservation"), // 웹 버전의 경우..
+        Uri.parse("http://192.168.123.70:5000/reservation"), // 웹 버전의 경우..
         body: {
           'id': loginController.id,
           'pw': loginController.pw,
@@ -68,30 +69,35 @@ class ReservationPage extends StatelessWidget {
 
       if (response.statusCode == 200) {
         debugPrint('Login successful');
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text('예약 주문이 접수되었습니다.')
-            )
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //     const SnackBar(
+        //         content: Text('예약 주문이 접수되었습니다.')
+        //     )
+        // );
+        Get.snackbar('notice', '예약 주문이 접수되었습니다.');
       }
       else if (response.statusCode == 500) {
         final responseData = jsonDecode(response.body);
         final errorMessage = responseData['error'];
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(content: Text(errorMessage)),
+        // );
+        Get.snackbar("notice", errorMessage);
+
       } else {
         final responseData = jsonDecode(response.body);
         final errorMessage = responseData['error'];
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(content: Text(errorMessage)),
+        // );
+        Get.snackbar("notice", errorMessage);
       }
     }
     catch (e) {
       debugPrint('Exception occurred: $e');
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('예약 실패..')));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(const SnackBar(content: Text('예약 실패..')));
+      Get.snackbar("notice", "예약 실패..");
     }
 
     //     final elapsedTimeDouble = jsonDecode(response.body);

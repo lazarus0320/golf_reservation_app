@@ -24,7 +24,7 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
     try {
       final response = await http.get(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation_table"),
-        Uri.parse("http://192.168.1.131:5000/reservation_table"),
+        Uri.parse("http://192.168.123.70:5000/reservation_table"),
       );
 
       if (response.statusCode == 200) {
@@ -49,7 +49,7 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
     try {
       final response = await http.delete(
         // Uri.parse("${dotenv.env['BASEURL']}/reservation_cancel/$id"),
-        Uri.parse("http://192.168.1.131:5000/reservation_cancel/$id"),
+        Uri.parse("http://192.168.123.70:5000/reservation_cancel/$id"),
       );
 
       if (response.statusCode == 200) {
@@ -90,6 +90,7 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
                 fontSize: 14, // Customize the data font size
               ),
               columns: const [
+                DataColumn(label: Text('예약 취소')),
                 DataColumn(label: Text('ID')),
                 DataColumn(label: Text('아이디')),
                 DataColumn(label: Text('비밀번호')),
@@ -102,24 +103,12 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
                 DataColumn(label: Text('예약 지정일(일요일)')),
                 DataColumn(label: Text('예약 시간(일요일)')),
                 DataColumn(label: Text('3 = 수요일 예약')),
-                DataColumn(label: Text('예약 취소')),
+
               ],
               rows: reservationData.map((reservation) {
                 final int id = reservation['id'] as int;
 
                 return DataRow(cells: [
-                  DataCell(Text(id.toString())),
-                  DataCell(Text(reservation['uid'])),
-                  DataCell(Text(reservation['upw'])),
-                  DataCell(Text(reservation['personnel'])),
-                  DataCell(Text(reservation['selectedDay'])),
-                  DataCell(Text(reservation['nextFuture'])),
-                  DataCell(Text(reservation['futureTime'])),
-                  DataCell(Text(reservation['nextSaturday'])),
-                  DataCell(Text(reservation['saturdayTime'])),
-                  DataCell(Text(reservation['nextSunday'])),
-                  DataCell(Text(reservation['sundayTime'])),
-                  DataCell(Text(reservation['wednesdayCheck'])),
                   DataCell(
                     ElevatedButton(
                       onPressed: () => _cancelReservation(id),
@@ -135,6 +124,19 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
                       ),
                     ),
                   ),
+                  DataCell(Text(id.toString())),
+                  DataCell(Text(reservation['uid'])),
+                  const DataCell(Text('************')),
+                  DataCell(Text(reservation['personnel'])),
+                  DataCell(Text(reservation['selectedDay'])),
+                  DataCell(Text(reservation['nextFuture'])),
+                  DataCell(Text(reservation['futureTime'])),
+                  DataCell(Text(reservation['nextSaturday'])),
+                  DataCell(Text(reservation['saturdayTime'])),
+                  DataCell(Text(reservation['nextSunday'])),
+                  DataCell(Text(reservation['sundayTime'])),
+                  DataCell(Text(reservation['wednesdayCheck'])),
+
                 ]);
               }).toList(),
             ),
