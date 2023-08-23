@@ -92,8 +92,6 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
               columns: const [
                 DataColumn(label: Text('예약 취소')),
                 DataColumn(label: Text('ID')),
-                DataColumn(label: Text('아이디')),
-                DataColumn(label: Text('비밀번호')),
                 DataColumn(label: Text('인원')),
                 DataColumn(label: Text('예약 실행일')),
                 DataColumn(label: Text('예약 지정일(14일 뒤)')),
@@ -125,8 +123,6 @@ class _ReservationTablePageState extends State<ReservationTablePage> {
                     ),
                   ),
                   DataCell(Text(id.toString())),
-                  DataCell(Text(reservation['uid'])),
-                  const DataCell(Text('************')),
                   DataCell(Text(reservation['personnel'])),
                   DataCell(Text(reservation['selectedDay'])),
                   DataCell(Text(reservation['nextFuture'])),
