@@ -45,6 +45,8 @@ class ReservationPage2 extends StatelessWidget {
                 ),
                 const TabBar(
                   indicatorColor: Colors.black,
+                  labelColor: Colors.black, // 선택된 탭의 글자색
+                  unselectedLabelColor: Colors.grey, // 선택되지 않은 탭의 글자색
                   tabs: [
                     Tab(text: '스케줄 예약', ),
                     Tab(text: '스케줄 조회/취소', ),
