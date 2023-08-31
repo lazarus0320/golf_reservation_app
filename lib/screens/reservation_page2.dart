@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:golf_regist_app/widgets/reservation_calendar_form2.dart';
+import 'package:golf_regist_app/widgets/reservation_personnel_form2.dart';
 
 /// Flutter code sample for [AppBar].
 class ReservationPage2 extends StatelessWidget {
@@ -57,14 +59,35 @@ class ReservationPage2 extends StatelessWidget {
             ),
           ),
         ),
-        body:
-        const TabBarView(children:[
-          Center(child : Text('DOGS')),
-          Center(child : Text('CATS')),
-          Center(child : Text('BIRDS'))
-        ]
-        ),
+        body: TabBarView(children:[
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child:ReservationPersonnelForm2()
+                ),
+                const SizedBox(height: 30,),
+                Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child:ReservationCalendarForm2()
+                ),
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              Text('1')
+            ]
+          ),
+          Column(
+            children: [
+              Text('1')
+            ]
+          )
+        ],
       ),
+      )
     );
   }
 }
