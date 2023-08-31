@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:golf_regist_app/screens/login_page.dart';
 import 'package:golf_regist_app/screens/reservation_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:golf_regist_app/screens/reservation_page2.dart';
 import 'package:golf_regist_app/screens/reservation_table_page.dart';
 import 'package:get/get.dart';
 
@@ -24,11 +25,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           // Your app theme data
           ),
-      initialRoute: '/',
+      initialRoute: '/reservation_page2',
       getPages: [
         GetPage(name: "/", page: () => LoginPage()),
-        GetPage(name: "/reservation_page", page: () => ReservationPage()),
-        GetPage(name: "/reservation_table_page", page: () => ReservationTablePage()),
+        GetPage(name: "/reservation_page2", page: () => const ReservationPage2()),
+        GetPage(name: "/reservation_table_page", page: () => const ReservationTablePage()),
       ]
     );
   }
