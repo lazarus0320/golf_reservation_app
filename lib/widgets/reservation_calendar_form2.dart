@@ -19,12 +19,21 @@ class ReservationCalendarForm2 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          '예약일',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              '예약일',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -77,7 +86,7 @@ class ReservationCalendarForm2 extends StatelessWidget {
                       border: Border.all(color: Colors.black),
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(15.0),
                       child: Text(
                         '우선순위',
                         style: TextStyle(

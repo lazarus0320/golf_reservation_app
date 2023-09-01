@@ -24,12 +24,10 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
   @override
   void initState() {
     super.initState();
-    controller =
-        Get.put<ReservationTimeSetController>(ReservationTimeSetController());
-    controller2 =
-        Get.put<ReservationTimeSetController2>(ReservationTimeSetController2());
-    controller3 =
-        Get.put<ReservationTimeSetController3>(ReservationTimeSetController3());
+    controller = Get.find<ReservationTimeSetController>();
+    controller2 = Get.find<ReservationTimeSetController2>();
+    controller3 = Get.find<ReservationTimeSetController3>();
+
     calendarController = Get.find<ReservationCalendarController>();
     prioritiesController =
         Get.put<TimePrioritiesController>(TimePrioritiesController());

@@ -27,6 +27,8 @@ class ReservationCalendarController extends GetxController {
         '${nextSaturday.value.year}년 ${nextSaturday.value.month}월 ${nextSaturday.value.day}일 ${_getWeekdayString(nextSaturday.value.weekday)}';
     formattedNextSunday.value =
         '${nextSunday.value.year}년 ${nextSunday.value.month}월 ${nextSunday.value.day}일 ${_getWeekdayString(nextSunday.value.weekday)}';
+    formattedSelectedDay.value =
+    '${selectedDate.value.year}년 ${selectedDate.value.month}월 ${selectedDate.value.day}일 ${_getWeekdayString(selectedDate.value.weekday)}';
   }
 
   String _getWeekdayString(int weekday) {
@@ -64,6 +66,8 @@ class ReservationCalendarController extends GetxController {
         '${nextSaturday.value.year}년 ${nextSaturday.value.month}월 ${nextSaturday.value.day}일 ${_getWeekdayString(nextSaturday.value.weekday)}';
     formattedNextSunday.value =
         '${nextSunday.value.year}년 ${nextSunday.value.month}월 ${nextSunday.value.day}일 ${_getWeekdayString(nextSunday.value.weekday)}';
+    formattedSelectedDay.value =
+    '${selectedDate.value.year}년 ${selectedDate.value.month}월 ${selectedDate.value.day}일 ${_getWeekdayString(selectedDate.value.weekday)}';
 
     ever(selectedFutureDate,
         (date) => debugPrint('selectedFutureDate changed: $date'));
