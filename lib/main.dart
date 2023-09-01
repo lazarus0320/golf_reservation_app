@@ -31,15 +31,15 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Golf Reservation',
       theme: ThemeData(
-          // Your app theme data
-          ),
+        // Your app theme data
+      ),
       initialRoute: '/reservation_page2',
       getPages: [
         GetPage(name: "/", page: () => LoginPage()),
         GetPage(name: "/reservation_page2", page: () => const ReservationPage2()),
         GetPage(name: "/reservation_table_page", page: () => const ReservationTablePage()),
       ],
-      
+
 
     );
   }
