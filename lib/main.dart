@@ -38,7 +38,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/", page: () => LoginPage()),
         GetPage(name: "/reservation_page2", page: () => const ReservationPage2()),
         GetPage(name: "/reservation_table_page", page: () => const ReservationTablePage()),
-      ]
+      ],
+      
+
     );
   }
 }

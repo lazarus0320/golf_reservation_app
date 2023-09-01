@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:golf_regist_app/widgets/ReservationPersonnelAndTimesetForm.dart';
+import 'package:golf_regist_app/widgets/reservation_btn.dart';
 import 'package:golf_regist_app/widgets/reservation_calendar_form2.dart';
 import 'package:golf_regist_app/widgets/reservation_personnel_form2.dart';
 
-/// Flutter code sample for [AppBar].
-class ReservationPage2 extends StatelessWidget {
+class ReservationPage2 extends StatefulWidget {
   const ReservationPage2({Key? key}) : super(key: key);
 
+  @override
+  _ReservationPage2State createState() => _ReservationPage2State();
+}
+
+class _ReservationPage2State extends State<ReservationPage2> {
+  int _currentStep = 0;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -63,15 +70,29 @@ class ReservationPage2 extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
+                // Padding(
+                //     padding: const EdgeInsets.all(30.0),
+                //     child:ReservationPersonnelForm2()
+                // ),
                 Padding(
                     padding: const EdgeInsets.all(30.0),
-                    child:ReservationPersonnelForm2()
-                ),
-                const SizedBox(height: 30,),
-                Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child:ReservationCalendarForm2()
-                ),
+                    child: _currentStep == 0 ? ReservationCalendarForm2() : ReservationPersonnelAndTimesetForm()),
+                Center(
+                    child: _currentStep == 0 ? ReservationBtn(
+                      btnText: '다음',
+                      onPressed: () => {
+                        setState((){_currentStep++;})
+                      },
+                      backgroundColor: Colors.black,
+                    ) :
+                    ReservationBtn(
+                      btnText: '이전',
+                      onPressed: () => {
+                        setState((){_currentStep--;})
+                      },
+                      backgroundColor: Colors.black,
+                    )
+                )
               ],
             ),
           ),
@@ -87,6 +108,17 @@ class ReservationPage2 extends StatelessWidget {
           )
         ],
       ),
+        bottomNavigationBar : BottomNavigationBar(
+          items: const [
+          BottomNavigationBarItem(icon : Icon(Icons.mail), label :'임시',),
+          BottomNavigationBarItem(icon : Icon(Icons.logout), label :'로그아웃',),
+        ],
+          onTap :(index) {
+            if(index ==0) {
+              // 로그아웃 처리 코드를 여기에 작성하세요.
+            }
+          },
+        ),
       )
     );
   }
