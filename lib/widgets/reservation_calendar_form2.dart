@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:golf_regist_app/controller/reservation_calendar_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class ReservationCalendarForm2 extends StatelessWidget {
-  // 예약 주문일 지정 달력 폼
+// 예약 주문일 지정 달력 폼
   ReservationCalendarForm2({Key? key}) : super(key: key);
 
   final ReservationCalendarController _controller =
@@ -38,9 +39,10 @@ class ReservationCalendarForm2 extends StatelessWidget {
               return Column(
                 children: [
                   TableCalendar(
+                    locale: 'ko_KR',
                     focusedDay: value,
-                    // firstDay: DateTime.now(), // 현재 날짜부터 선택 가능
-                    firstDay: DateTime(2023), // 현재 날짜부터 선택 가능
+                    firstDay: DateTime.now(), // 현재 날짜부터 선택 가능
+// firstDay: DateTime(2023), // 현재 날짜부터 선택 가능
                     lastDay: DateTime.now().add(const Duration(days: 365)), // 선택 가능한 최초 날짜
                     calendarFormat: CalendarFormat.month,
                     onDaySelected: (date, _) {
@@ -61,7 +63,8 @@ class ReservationCalendarForm2 extends StatelessWidget {
                     selectedDayPredicate: (date) {
                       return isSameDay(date, selectedDate.value);
                     },
-                    headerStyle: const HeaderStyle(
+                    headerStyle: HeaderStyle(
+
                       formatButtonVisible: false, // Remove the "2 weeks" button
                       titleCentered: true,
                       titleTextStyle: TextStyle(

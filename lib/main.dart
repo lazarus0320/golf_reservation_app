@@ -2,14 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:golf_regist_app/screens/login_page.dart';
-import 'package:golf_regist_app/screens/reservation_page.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:golf_regist_app/screens/reservation_page.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:golf_regist_app/screens/reservation_page2.dart';
 import 'package:golf_regist_app/screens/reservation_table_page.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting();
   runApp(const MyApp());
 }
 
