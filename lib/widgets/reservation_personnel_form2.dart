@@ -7,7 +7,7 @@ class ReservationPersonnelForm2 extends StatelessWidget {
   ReservationPersonnelForm2({Key? key}) : super(key: key);
 
   final ReservationPersonnelController controller =
-  Get.put(ReservationPersonnelController()); // 인원정보 컨트롤러 초기화
+  Get.find<ReservationPersonnelController>(); // 인원정보 컨트롤러 초기화
 
   @override
   Widget build(BuildContext context) {

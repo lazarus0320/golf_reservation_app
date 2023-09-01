@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:golf_regist_app/controller/reservation_calendar_controller.dart';
+import 'package:golf_regist_app/controller/reservation_personnel_controller.dart';
 import 'package:golf_regist_app/screens/login_page.dart';
 // import 'package:golf_regist_app/screens/reservation_page.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -20,6 +22,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: BindingsBuilder(() {
+        Get.lazyPut<ReservationPersonnelController>(() => ReservationPersonnelController());
+        Get.lazyPut<ReservationCalendarController>(() => ReservationCalendarController());
+      }),
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
       ),
