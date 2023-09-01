@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PriorityListTile extends StatelessWidget {
   final String title;
+  final String? number; // Make the number parameter optional by adding '?'.
 
-  const PriorityListTile({super.key, required this.title});
+  const PriorityListTile({Key? key, required this.title, this.number}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,22 @@ class PriorityListTile extends StatelessWidget {
             bottom: BorderSide(color: Color(0xFFDEE2E6), width: 2),
           ),
         ),
-        child: Text(
-          title,
-          style: const TextStyle(color: Colors.black),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(color: Colors.black),
+            ),
+            if (number != null)
+              Text(
+                number!,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          ],
         ),
       ),
     );

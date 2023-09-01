@@ -101,7 +101,7 @@ class ReservationCalendarForm2 extends StatelessWidget {
                       return Column(
                         children: [
                           PriorityListTile(
-                              title: '$formattedFutureDate 예약 접수'),
+                              title: '$formattedFutureDate 예약 접수', number: '01',),
                         ],
                       );
                     } else if (selectedDayOfWeek == 3) {
@@ -115,18 +115,18 @@ class ReservationCalendarForm2 extends StatelessWidget {
                       return Column(
                         children: [
                           PriorityListTile(
-                              title: '$formattedFutureDate 예약 접수'),
+                              title: '$formattedFutureDate 예약 접수', number: '01',),
                           PriorityListTile(
-                              title: '$formattedNextSaturday 예약 접수'),
+                              title: '$formattedNextSaturday 예약 접수', number: '02'),
                           PriorityListTile(
-                              title: '$formattedNextSunday 예약 접수'),
+                              title: '$formattedNextSunday 예약 접수', number: '03'),
                         ],
                       );
                     } else {
                       // 토, 일 선택시
                       controller.isWeekendSelected.value = true;
                       return const PriorityListTile(
-                          title: '주말에는 예약이 불가능합니다.');
+                          title: '주말에는 예약이 불가능합니다.',);
                     }
                   })
                 ],
