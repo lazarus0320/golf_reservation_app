@@ -22,11 +22,18 @@ class ReservationPage2 extends StatefulWidget {
 
 class _ReservationPage2State extends State<ReservationPage2> {
   final PageController _pageController = PageController(initialPage: 0);
+  int currentPage = 0;
 
   @override
   void dispose() {
     _pageController.dispose(); // PageController 해제
     super.dispose();
+  }
+
+  void onPageChanged(int page) {
+    setState(() {
+      currentPage = page;
+    });
   }
 
   @override
@@ -83,9 +90,35 @@ class _ReservationPage2State extends State<ReservationPage2> {
         body: PageView.builder(
           controller: _pageController,
           itemCount: 3,
+          onPageChanged: onPageChanged,
           itemBuilder: (context, index) {
             return Column(
               children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 30, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: List<Widget>.generate(2, (index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                          width: 15.0,
+                          height: 15.0,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: currentPage == 0 ? (index == 0 ? Colors.black : Colors.white) : Colors.black,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1.0,
+                            )
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
