@@ -9,57 +9,9 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-class ReservationPersonnelAndTimesetForm extends StatelessWidget {
-  // 예약 주문일 지정 달력 폼
-  ReservationPersonnelAndTimesetForm({Key? key}) : super(key: key);
+import '../widgets/ReservationPersonnelAndTimesetForm.dart';
 
-  final ReservationCalendarController controller =
-  Get.find<ReservationCalendarController>();
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            const Text('매크로 진행일'),
-            Container(
-              width: 200.0,
-              margin: const EdgeInsets.only(left: 10.0), // 좌우 간격 조절
-              color: Colors.grey[200], // 배경색 지정
-              child: TextField(
-                controller:
-                TextEditingController(text: '${controller.formattedSelectedDay}'), // 초기값 지정
-                enabled: false, // 수정 불가능하도록 설정
-                showCursor: false, // 커서 제거
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30,),
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-          ),
-          child: const Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              '예약 시간',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-        const ReservationTimeSetForm(),
-      ],
-    );
-  }
-}
 
 class ReservationPage2 extends StatefulWidget {
   const ReservationPage2({Key? key}) : super(key: key);
@@ -69,7 +21,7 @@ class ReservationPage2 extends StatefulWidget {
 }
 
 class _ReservationPage2State extends State<ReservationPage2> {
-  final PageController _pageController = PageController(initialPage: 0); // PageController 추가
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   void dispose() {
@@ -142,35 +94,36 @@ class _ReservationPage2State extends State<ReservationPage2> {
                           padding: const EdgeInsets.all(30.0),
                           child: index == 0 ? ReservationCalendarForm2() : ReservationPersonnelAndTimesetForm(),
                         ),
+                        Align(
+                          alignment: Alignment.bottomCenter, // 아래쪽 정렬
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0), // 아래 여백 추가
+                            child: index == 0
+                                ? ReservationBtn(
+                              btnText: '다음',
+                              onPressed: () {
+                                setState(() {
+                                  _pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+                                });
+                              },
+                              backgroundColor: Colors.black,
+                            )
+                                : ReservationBtn(
+                              btnText: '이전',
+                              onPressed: () {
+                                setState(() {
+                                  _pageController.animateToPage(0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+                                });
+                              },
+                              backgroundColor: Colors.black,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter, // 아래쪽 정렬
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0), // 아래 여백 추가
-                    child: index == 0
-                        ? ReservationBtn(
-                      btnText: '다음',
-                      onPressed: () {
-                        setState(() {
-                          _pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-                        });
-                      },
-                      backgroundColor: Colors.black,
-                    )
-                        : ReservationBtn(
-                      btnText: '이전',
-                      onPressed: () {
-                        setState(() {
-                          _pageController.animateToPage(0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-                        });
-                      },
-                      backgroundColor: Colors.black,
-                    ),
-                  ),
-                ),
+
               ],
             );
           },
