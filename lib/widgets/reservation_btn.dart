@@ -18,7 +18,7 @@ class ReservationBtn extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           backgroundColor: backgroundColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
@@ -26,7 +26,7 @@ class ReservationBtn extends StatelessWidget {
         ),
         child: Text(
           btnText,
-          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );

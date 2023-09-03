@@ -46,7 +46,7 @@ class ReservationPersonnelForm2 extends StatelessWidget {
                 child: Radio<String>(
                   value: '4',
                   activeColor: Colors.black,
-                  groupValue: controller.getSelectedValue(tag).value.toString(),
+                  groupValue: controller.getSelectedValue(tag).value,
                   onChanged: (value) {
                     controller.setSelectedValue(value!, tag);
                   },

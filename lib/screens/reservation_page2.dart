@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:golf_regist_app/widgets/schedule_reservation_tab.dart';
 
 import '../widgets/ReservationPersonnelAndTimesetForm.dart';
 import '../widgets/reservation_btn.dart';
@@ -14,14 +15,12 @@ class ReservationPage2 extends StatefulWidget {
 class _ReservationPage2State extends State<ReservationPage2>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  late Widget currentPage;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
-    currentPage = ReservationCalendarForm2(); // Initialize with the first form
   }
 
   void _handleTabSelection() {
@@ -32,12 +31,6 @@ class _ReservationPage2State extends State<ReservationPage2>
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  void switchPage(Widget newPage) {
-    setState(() {
-      currentPage = newPage;
-    });
   }
 
   @override
@@ -94,88 +87,7 @@ class _ReservationPage2State extends State<ReservationPage2>
         controller: _tabController,
         children: [
           // Content for the '스케줄 예약' tab (Page 1)
-          Column(
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 30, top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: List<Widget>.generate(2, (index) {
-                      final isBlack = currentPage is ReservationCalendarForm2
-                          ? (index == 0 ? true : false)
-                          : true; // Check if the circle color is black
-                      final circleColor = isBlack ? Colors.black : Colors.white;
-                      final textColor = isBlack ? Colors.white : Colors.black;
-
-                      return Stack(
-                          children: [
-                            Container(
-                              width: 25.0,
-                              height: 25.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: circleColor,
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 1.0,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0, top: 2.0),
-                              child: Center(
-                                child: Text((index + 1).toString(),
-                                style: TextStyle(color: textColor, fontWeight: FontWeight.bold,),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 30,),
-                          ]
-                        );
-
-                    }),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: currentPage,
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: currentPage is ReservationCalendarForm2
-                              ? ReservationBtn(
-                            btnText: '다음',
-                            onPressed: () {
-                              switchPage(
-                                  ReservationPersonnelAndTimesetForm());
-                            },
-                            backgroundColor: Colors.black,
-                          )
-                              : ReservationBtn(
-                            btnText: '이전',
-                            onPressed: () {
-                              switchPage(ReservationCalendarForm2());
-                            },
-                            backgroundColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+          ScheduleReservationTab(),
           // Content for the '스케줄 조회/취소' tab (Page 2)
           Column(
             children: [
