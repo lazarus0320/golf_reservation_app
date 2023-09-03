@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:golf_regist_app/widgets/schedule_reservation_tab.dart';
 
-import '../widgets/ReservationPersonnelAndTimesetForm.dart';
-import '../widgets/reservation_btn.dart';
-import '../widgets/reservation_calendar_form2.dart';
+import '../widgets/schedule_check_cancel_tab.dart';
 
-class ReservationPage2 extends StatefulWidget {
-  const ReservationPage2({Key? key}) : super(key: key);
+class ReservationPage extends StatefulWidget {
+  const ReservationPage({Key? key}) : super(key: key);
 
   @override
-  _ReservationPage2State createState() => _ReservationPage2State();
+  _ReservationPageState createState() => _ReservationPageState();
 }
 
-class _ReservationPage2State extends State<ReservationPage2>
+class _ReservationPageState extends State<ReservationPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
 
@@ -89,11 +87,7 @@ class _ReservationPage2State extends State<ReservationPage2>
           // Content for the '스케줄 예약' tab (Page 1)
           ScheduleReservationTab(),
           // Content for the '스케줄 조회/취소' tab (Page 2)
-          Column(
-            children: [
-              // Add your content here for the second page of '스케줄 조회/취소' tab
-            ],
-          ),
+          ScheduleCheckCancelTab(),
           // Content for the '예약 결과' tab (Page 3)
           Column(
             children: [
