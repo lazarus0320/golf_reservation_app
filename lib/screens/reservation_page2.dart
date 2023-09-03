@@ -103,21 +103,38 @@ class _ReservationPage2State extends State<ReservationPage2>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: List<Widget>.generate(2, (index) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                        width: 15.0,
-                        height: 15.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: currentPage is ReservationCalendarForm2
-                              ? (index == 0 ? Colors.black : Colors.white)
-                              : Colors.black,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1.0,
-                          ),
-                        ),
-                      );
+                      final isBlack = currentPage is ReservationCalendarForm2
+                          ? (index == 0 ? true : false)
+                          : true; // Check if the circle color is black
+                      final circleColor = isBlack ? Colors.black : Colors.white;
+                      final textColor = isBlack ? Colors.white : Colors.black;
+
+                      return Stack(
+                          children: [
+                            Container(
+                              width: 25.0,
+                              height: 25.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: circleColor,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0, top: 2.0),
+                              child: Center(
+                                child: Text((index + 1).toString(),
+                                style: TextStyle(color: textColor, fontWeight: FontWeight.bold,),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 30,),
+                          ]
+                        );
+
                     }),
                   ),
                 ),

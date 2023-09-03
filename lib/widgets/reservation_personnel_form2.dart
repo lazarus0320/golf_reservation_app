@@ -1,60 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golf_regist_app/controller/reservation_personnel_controller.dart';
 
-/// Flutter code sample for [AppBar].
+import '../controller/reservation_personnel_controller.dart';
+
 class ReservationPersonnelForm2 extends StatelessWidget {
-  ReservationPersonnelForm2({Key? key}) : super(key: key);
+  final ReservationPersonnelController controller;
+  final String tag;
 
-  final ReservationPersonnelController controller =
-  Get.find<ReservationPersonnelController>(); // 인원정보 컨트롤러 초기화
+  ReservationPersonnelForm2({required this.controller, required this.tag, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '인원',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20.0),
-        Row(
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // const SizedBox(height: 70,),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Obx(() => Radio<String>(
-                value: '3',
-                activeColor: Colors.black,
-                groupValue: controller.selectedValue.value,
-                onChanged: (value) {
-                  controller.setSelectedValue(value!);
-                },
+              child: Obx(() => Transform.scale(
+                scale: 1.3, // Adjust the scale factor as needed
+                child: Radio<String>(
+                  value: '3',
+                  activeColor: Colors.black,
+                  groupValue:
+                  controller.getSelectedValue(tag).value,
+                  onChanged: (value) {
+                    controller.setSelectedValue(value!, tag);
+                  },
+                ),
               )),
             ),
-            const Text('3명'),
+            const Text(
+              '  3명',
+              style: TextStyle(
+                fontSize: 20, // Adjust the font size as needed
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 150.0),
-              child:
-              Obx(() => Radio<String>(
-                value:'4',
-                activeColor: Colors.black,
-                groupValue:controller.selectedValue.value,
-                onChanged: (value) {
-                  controller.setSelectedValue(value!);
-                },
+              padding: const EdgeInsets.only(left: 120.0),
+              child: Obx(() => Transform.scale(
+                scale: 1.3, // Adjust the scale factor as needed
+                child: Radio<String>(
+                  value: '4',
+                  activeColor: Colors.black,
+                  groupValue: controller.getSelectedValue(tag).value.toString(),
+                  onChanged: (value) {
+                    controller.setSelectedValue(value!, tag);
+                  },
+                ),
               )),
             ),
-            const Text('4명'),
+            const Text(
+              '  4명',
+              style: TextStyle(
+                fontSize: 20, // Adjust the font size as needed
+              ),
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

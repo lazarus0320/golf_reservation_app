@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() {
-        Get.lazyPut<ReservationPersonnelController>(() => ReservationPersonnelController());
+        // Get.lazyPut<ReservationPersonnelController>(() => ReservationPersonnelController());
         Get.lazyPut<ReservationCalendarController>(() => ReservationCalendarController());
         Get.lazyPut<ReservationTimeSetController>(() => ReservationTimeSetController());
         Get.lazyPut<ReservationTimeSetController2>(() => ReservationTimeSetController2());

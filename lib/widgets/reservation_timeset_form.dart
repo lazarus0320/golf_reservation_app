@@ -3,10 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golf_regist_app/controller/reservation_calendar_controller.dart';
+import 'package:golf_regist_app/controller/reservation_personnel_controller.dart';
 import 'package:golf_regist_app/controller/reservation_timeset_controller.dart';
 import 'package:golf_regist_app/controller/reservation_timeset_controller2.dart';
 import 'package:golf_regist_app/controller/reservation_timeset_controller3.dart';
 import 'package:golf_regist_app/controller/time_priorities_controller.dart';
+import 'package:golf_regist_app/widgets/reservation_personnel_form2.dart';
+
+import '../controller/reservation_personnel_controller2.dart';
+import '../controller/reservation_personnel_controller3.dart';
 
 class ReservationTimeSetForm extends StatefulWidget {
   const ReservationTimeSetForm({Key? key}) : super(key: key);
@@ -20,6 +25,7 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
   late final ReservationTimeSetController3 controller3;
   late final ReservationCalendarController calendarController;
   late final TimePrioritiesController prioritiesController;
+  // late final ReservationPersonnelController personnelController;
 
   @override
   void initState() {
@@ -27,6 +33,8 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
     controller = Get.find<ReservationTimeSetController>();
     controller2 = Get.find<ReservationTimeSetController2>();
     controller3 = Get.find<ReservationTimeSetController3>();
+
+    // personnelController = Get.find<ReservationPersonnelController>();
 
     calendarController = Get.find<ReservationCalendarController>();
     prioritiesController =
@@ -70,7 +78,7 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                       children: [
                         Expanded(
                           child: Container(
-                            height: 120,
+                            height: 150,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
@@ -114,13 +122,15 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                                     ),
                                   ],
                                 ),
+                                ReservationPersonnelForm2(controller: Get.put(ReservationPersonnelController()), tag: 'container'),
                               ],
+
                             ),
                           ),
                         ),
                         const SizedBox(height: 20),
                         Container(
-                          height: 120,
+                          height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
@@ -161,12 +171,13 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                                       controller2.setSelectedMinute),
                                 ],
                               ),
+                              ReservationPersonnelForm2(controller: Get.put(ReservationPersonnelController()), tag: 'container2'),
                             ],
                           ),
                         ),
                         const SizedBox(height: 20),
                         Container(
-                          height: 120,
+                          height: 150,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
@@ -207,6 +218,7 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                                         controller3.setSelectedMinute),
                                   ],
                                 ),
+                                ReservationPersonnelForm2(controller: Get.put(ReservationPersonnelController()), tag: 'container3'),
                               ]),
                         ),
                         const SizedBox(height: 20),
@@ -214,7 +226,7 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                     );
                   } else {
                     return Container(
-                        height: 95,
+                        height: 150,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16),
@@ -255,6 +267,7 @@ class _ReservationTimeSetFormState extends State<ReservationTimeSetForm> {
                                       controller.setSelectedMinute),
                                 ],
                               ),
+                              ReservationPersonnelForm2(controller: Get.put(ReservationPersonnelController()), tag: 'container'),
                             ]));
                   }
                 }),
