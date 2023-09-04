@@ -96,7 +96,6 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                       onPressed: () {
                         Navigator.of(context).pop();
                         _cancelReservation(id);
-                        _fetchReservationData();
                       },
                       child: const Text(
                         '확인',
@@ -126,7 +125,9 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
       if (response.statusCode == 200) {
         // Reservation canceled successfully, you can handle the response if needed
         debugPrint('Reservation canceled for ID: $id');
-        _fetchReservationData(); // Refresh the reservation data after cancellation
+        setState(() {
+          reservationData.removeWhere((reservation) => reservation['id'] == id);
+        });
       } else {
         // Handle HTTP error (status code other than 200)
         debugPrint('HTTP Error: ${response.statusCode}');
