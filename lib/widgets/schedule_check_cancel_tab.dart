@@ -96,6 +96,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                       onPressed: () {
                         Navigator.of(context).pop();
                         _cancelReservation(id);
+                        _fetchReservationData();
                       },
                       child: const Text(
                         '확인',
