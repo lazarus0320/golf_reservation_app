@@ -6,10 +6,7 @@ import 'package:golf_regist_app/controller/reservation_calendar_controller.dart'
 import 'package:golf_regist_app/controller/reservation_personnel_controller.dart';
 import 'package:golf_regist_app/controller/reservation_timeset_controller.dart';
 import 'package:golf_regist_app/screens/login_page.dart';
-// import 'package:golf_regist_app/screens/reservation_page.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:golf_regist_app/screens/reservation_page.dart';
-import 'package:golf_regist_app/screens/reservation_table_page.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -46,7 +43,6 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/", page: () => LoginPage()),
         GetPage(name: "/reservation_page", page: () => const ReservationPage()),
-        GetPage(name: "/reservation_table_page", page: () => const ReservationTablePage()),
       ],
 
 

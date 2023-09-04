@@ -110,6 +110,6 @@ class ReservationTimeSetController extends GetxController {
     ever(selectedAmPm, (value) => debugPrint('selectedAmPm changed: $value'));
     ever(selectedHour, (value) => debugPrint('selectedHour changed: $value'));
     ever(selectedMinute,
-        (value) => debugPrint('selectedMinute changed: $value'));
+            (value) => debugPrint('selectedMinute changed: $value'));
   }
 }

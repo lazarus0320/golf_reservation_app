@@ -27,7 +27,6 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
         reservationData = jsonData['reservations'].cast<Map<String, dynamic>>();
-        setState(() {});
 
         debugPrint('Received data from server:');
         debugPrint(reservationData.toString());
@@ -60,7 +59,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
             ],
           ),
           actions: <Widget>[
-            Container(
+            SizedBox(
               width: double.maxFinite,
               child: Row(
                 children: [
@@ -239,15 +238,17 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                 )
               ],
             ),
+            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(left: 18.0),
               child: Text('${reservationData.length.toString()}건',
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
             ),
             Center(
               child: SizedBox(
                 width: 500,
                 child: ListView.builder(
+                  reverse: true,
                   shrinkWrap: true,
                   itemCount: reservationData.length,
                   itemBuilder: (context, index) {
@@ -256,17 +257,17 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                         '${reservation['selectedDay']}   09:00';
 
                     final String reservationTimeWeekday =
-                        '${reservation['nextFuture']}    ${reservation['futureTime']}                 인원: ${reservation['futurePersonnel']}';
+                        '${reservation['nextFuture']}    ${reservation['futureTime']}                 인원: ${reservation['personnel']}';
 
                     String reservationTimeSaturday = ''; // Initialize as an empty string
                     String reservationTimeSunday = '';   // Initialize as an empty string
 
-                    if (reservation['wednesdayCheck'] == '3') {
-                      reservationTimeSaturday =
-                      '${reservation['nextSaturday']}    ${reservation['saturdayTime']}                 인원: ${reservation['saturdayPersonnel']}';
-                      reservationTimeSunday =
-                      '${reservation['nextSunday']}    ${reservation['sundayTime']}                 인원: ${reservation['sundayPersonnel']}';
-                    }
+                    // if (reservation['wednesdayCheck'] == '3') {
+                    //   reservationTimeSaturday =
+                    //   '${reservation['nextSaturday']}    ${reservation['saturdayTime']}                 인원: ${reservation['saturdayPersonnel']}';
+                    //   reservationTimeSunday =
+                    //   '${reservation['nextSunday']}    ${reservation['sundayTime']}                 인원: ${reservation['sundayPersonnel']}';
+                    // }
 
                     return Container(
                       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -313,32 +314,32 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                               Text(reservationTimeWeekday),
                             ],
                           ),
-                          if (reservation['wednesdayCheck'] == '3')
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  '예약 일시 : ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(reservationTimeSaturday),
-                              ],
-                            ),
-                          if (reservation['wednesdayCheck'] == '3')
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  '예약 일시 : ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(reservationTimeSunday),
-                              ],
-                            ),
+                          // if (reservation['wednesdayCheck'] == '3')
+                          //   Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       const Text(
+                          //         '예약 일시 : ',
+                          //         style: TextStyle(
+                          //           fontWeight: FontWeight.bold,
+                          //         ),
+                          //       ),
+                          //       Text(reservationTimeSaturday),
+                          //     ],
+                          //   ),
+                          // if (reservation['wednesdayCheck'] == '3')
+                          //   Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       const Text(
+                          //         '예약 일시 : ',
+                          //         style: TextStyle(
+                          //           fontWeight: FontWeight.bold,
+                          //         ),
+                          //       ),
+                          //       Text(reservationTimeSunday),
+                          //     ],
+                          //   ),
                         ],
                       ),
                     );

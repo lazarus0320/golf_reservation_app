@@ -10,8 +10,6 @@ import 'package:golf_regist_app/controller/reservation_timeset_controller3.dart'
 import 'package:golf_regist_app/controller/time_priorities_controller.dart';
 import 'package:golf_regist_app/widgets/reservation_personnel_form2.dart';
 
-import '../controller/reservation_personnel_controller2.dart';
-import '../controller/reservation_personnel_controller3.dart';
 
 class ReservationTimeSetForm extends StatefulWidget {
   const ReservationTimeSetForm({Key? key}) : super(key: key);

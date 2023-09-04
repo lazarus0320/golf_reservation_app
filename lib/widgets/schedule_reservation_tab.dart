@@ -49,38 +49,15 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
     }
 
     try {
-    // Log the values and their types before sending the POST request
-    print('id (${loginController.id.runtimeType}): ${loginController.id}');
-    print('pw (${loginController.pw.runtimeType}): ${loginController.pw}');
-    print('futurePersonnel (${personnelController.getSelectedValue('container').runtimeType}): ${personnelController.getSelectedValue('container')}');
-    print('saturdayPersonnel (${personnelController.getSelectedValue('container2').runtimeType}): ${personnelController.getSelectedValue('container2')}');
-    print('sundayPersonnel (${personnelController.getSelectedValue('container3').runtimeType}): ${personnelController.getSelectedValue('container3')}');
-    print('selectedDay (${calendarController.formattedSelectedDay.runtimeType}): ${calendarController.formattedSelectedDay.toString()}');
-    print('nextFuture (${calendarController.formattedNextFuture.value.runtimeType}): ${calendarController.formattedNextFuture.value}');
-    print('nextSaturday (${calendarController.formattedNextSaturday.value.runtimeType}): ${calendarController.formattedNextSaturday.value}');
-    print('nextSunday (${calendarController.formattedNextSunday.value.runtimeType}): ${calendarController.formattedNextSunday.value}');
-    print('futureTime (${timeSetController.formattedTime.runtimeType}): ${timeSetController.formattedTime}');
-    print('saturdayTime (${timeSetController2.formattedTime.runtimeType}): ${timeSetController2.formattedTime}');
-    print('sundayTime (${timeSetController3.formattedTime.runtimeType}): ${timeSetController3.formattedTime}');
-    print('wednesdayCheck (${calendarController.selectedFutureDate.value.weekday.runtimeType}): ${calendarController.selectedFutureDate.value.weekday.toString()}');
-
-
     final response = await http.post(
         Uri.parse("http://61.83.77.86:5000/reservation"),
         body: {
           'id': loginController.id,
           'pw': loginController.pw,
-          'futurePersonnel': personnelController.getSelectedValue('container').toString(),
-          'saturdayPersonnel': personnelController.getSelectedValue('container2').toString(),
-          'sundayPersonnel': personnelController.getSelectedValue('container3').toString(),
+          'personnel': personnelController.getSelectedValue('container').toString(),
           'selectedDay': calendarController.formattedSelectedDay.toString(),
           'nextFuture': calendarController.formattedNextFuture.value,
-          'nextSaturday': calendarController.formattedNextSaturday.value,
-          'nextSunday': calendarController.formattedNextSunday.value,
           'futureTime': timeSetController.formattedTime,
-          'saturdayTime': timeSetController2.formattedTime,
-          'sundayTime': timeSetController3.formattedTime,
-          'wednesdayCheck': calendarController.selectedFutureDate.value.weekday.toString(),
         },
       );
 
@@ -102,6 +79,92 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
     catch (e) {
       Get.snackbar('notice', '예약 실패..');
     }
+  }
+
+  Future<void> _submit2(BuildContext context) async {
+    if (calendarController.isWeekendSelected.value) {
+      Get.snackbar('notice', '주말 예약 접수는 불가능합니다.');
+      return;
+    }
+
+    try {
+      final response = await http.post(
+        Uri.parse("http://61.83.77.86:5000/reservation"),
+        body: {
+          'id': loginController.id,
+          'pw': loginController.pw,
+          'personnel': personnelController.getSelectedValue('container2').toString(),
+          'selectedDay': calendarController.formattedSelectedDay.toString(),
+          'nextFuture': calendarController.formattedNextSaturday.value,
+          'futureTime': timeSetController2.formattedTime,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        debugPrint('예약 접수 완료');
+        Get.snackbar('notice', '스케줄 예약이 완료되었습니다.');
+      }
+      else if (response.statusCode == 500) {
+        final responseData = jsonDecode(response.body);
+        final errorMessage = responseData['error'];
+        Get.snackbar('notice', errorMessage);
+      }
+      else {
+        final responseData = jsonDecode(response.body);
+        final errorMessage = responseData['error'];
+        Get.snackbar('notice', errorMessage);
+      }
+    }
+    catch (e) {
+      Get.snackbar('notice', '예약 실패..');
+    }
+  }
+
+  Future<void> _submit3(BuildContext context) async {
+    if (calendarController.isWeekendSelected.value) {
+      Get.snackbar('notice', '주말 예약 접수는 불가능합니다.');
+      return;
+    }
+
+    try {
+      final response = await http.post(
+        Uri.parse("http://61.83.77.86:5000/reservation"),
+        body: {
+          'id': loginController.id,
+          'pw': loginController.pw,
+          'personnel': personnelController.getSelectedValue('container3').toString(),
+          'selectedDay': calendarController.formattedSelectedDay.toString(),
+          'nextFuture': calendarController.formattedNextSaturday.value,
+          'futureTime': timeSetController3.formattedTime,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        debugPrint('예약 접수 완료');
+        Get.snackbar('notice', '스케줄 예약이 완료되었습니다.');
+      }
+      else if (response.statusCode == 500) {
+        final responseData = jsonDecode(response.body);
+        final errorMessage = responseData['error'];
+        Get.snackbar('notice', errorMessage);
+      }
+      else {
+        final responseData = jsonDecode(response.body);
+        final errorMessage = responseData['error'];
+        Get.snackbar('notice', errorMessage);
+      }
+    }
+    catch (e) {
+      Get.snackbar('notice', '예약 실패..');
+    }
+  }
+
+  Future<void> _submitAll(BuildContext context) async {
+    await Future.wait([
+      _submit(context),
+      _submit2(context),
+      _submit3(context),
+    ]);
   }
 
   @override
@@ -183,14 +246,21 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
                           ),
                           if (currentPage is ReservationPersonnelAndTimesetForm)
                             ReservationBtn(
-                              btnText: '스케줄 등록',
-                              onPressed: () => _submit(context),
-                              backgroundColor: Colors.blue, // 파란색 배경
+                                btnText: '스케줄 등록',
+                                onPressed: () {
+                                  if (calendarController.selectedDate.value.weekday == 3) {
+                                    _submitAll(context);
+                                  }
+                                  else {
+                                    _submit(context);
+                                  }
+                                },
+                                backgroundColor: Colors.green,
                             ),
-                        ],
+                          ],
+                      ),
                       ),
                     ),
-                  ),
                 ]
             ),
           ),

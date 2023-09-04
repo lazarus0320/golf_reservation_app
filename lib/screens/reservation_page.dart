@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:golf_regist_app/widgets/schedule_reservation_tab.dart';
 
+import '../widgets/reservation_result_tab.dart';
 import '../widgets/schedule_check_cancel_tab.dart';
 
 class ReservationPage extends StatefulWidget {
@@ -89,11 +90,7 @@ class _ReservationPageState extends State<ReservationPage>
           // Content for the '스케줄 조회/취소' tab (Page 2)
           ScheduleCheckCancelTab(),
           // Content for the '예약 결과' tab (Page 3)
-          Column(
-            children: [
-              // Add your content here for the '예약 결과' tab
-            ],
-          ),
+          ReservationResultTab(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
