@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:golf_regist_app/controller/login_controller.dart';
 import 'package:golf_regist_app/controller/reservation_calendar_controller.dart';
 import 'package:golf_regist_app/controller/reservation_personnel_controller.dart';
 import 'package:golf_regist_app/controller/reservation_timeset_controller.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         Get.lazyPut<ReservationTimeSetController>(() => ReservationTimeSetController());
         Get.lazyPut<ReservationTimeSetController2>(() => ReservationTimeSetController2());
         Get.lazyPut<ReservationTimeSetController3>(() => ReservationTimeSetController3());
+        Get.lazyPut<LoginController>(() => LoginController());
+        Get.lazyPut<ReservationPersonnelController>(() => ReservationPersonnelController());
       }),
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
