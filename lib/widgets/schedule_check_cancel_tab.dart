@@ -162,10 +162,12 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Wrap(
+              alignment: WrapAlignment.start,
+              spacing: 3.0,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('당일'),
                     style: ElevatedButton.styleFrom(
@@ -177,6 +179,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      minimumSize: const Size(50, 40),
                     ),
 
                     child: const Text('당일'),
@@ -184,7 +187,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('1주일'),
                     style: ElevatedButton.styleFrom(
@@ -196,12 +199,13 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      minimumSize: const Size(50, 40),
                     ),
                     child: const Text('1주일'),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('1개월'),
                     style: ElevatedButton.styleFrom(
@@ -213,42 +217,47 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-
+                      minimumSize: Size(50, 40),
                     ),
                     child: const Text('1개월'),
                   ),
                 ),
-                const Spacer(),
-                PopupMenuButton<String>(
-                  onSelected: selectSortOption,
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: '최근일자순',
-                      child: Text('최근일자순'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: '오래된순',
-                      child: Text('오래된순'),
-                    )
-                  ],
-                  child: Row(
-                    children: [
-                      Text('정렬: $selectedSortOption'),
-                      const Icon(Icons.arrow_drop_down),
-                    ],
-                  ),
-                )
+                // const Spacer(),
+
               ],
             ),
-            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(left: 18.0),
-              child: Text('${reservationData.length.toString()}건',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('${reservationData.length.toString()}건',
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                  PopupMenuButton<String>(
+                    onSelected: selectSortOption,
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                      const PopupMenuItem<String>(
+                        value: '최근일자순',
+                        child: Text('최근일자순'),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: '오래된순',
+                        child: Text('오래된순'),
+                      )
+                    ],
+                    child: Row(
+                      children: [
+                        Text('정렬: $selectedSortOption'),
+                        const Icon(Icons.arrow_drop_down),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Center(
               child: SizedBox(
-                width: 500,
+                // width: 500,
                 child: ListView.builder(
                   reverse: true,
                   shrinkWrap: true,
@@ -256,10 +265,10 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                   itemBuilder: (context, index) {
                     final reservation = reservationData[index];
                     final String scheduleRegistrationTime =
-                        '${reservation['selectedDay']}   09:00';
+                        '${reservation['selectedDay']} 09:00';
 
                     final String reservationTimeWeekday =
-                        '${reservation['nextFuture']}    ${reservation['futureTime']}                 인원: ${reservation['personnel']}';
+                        '${reservation['nextFuture']}    ${reservation['futureTime']}     ${reservation['personnel']}명';
 
                     String reservationTimeSaturday = ''; // Initialize as an empty string
                     String reservationTimeSunday = '';   // Initialize as an empty string
@@ -285,7 +294,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                '스케줄 실행 일시 : ',
+                                '스케줄 일시 : ',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -293,6 +302,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                               Text(scheduleRegistrationTime),
                               IconButton(
                                 icon: const Icon(Icons.clear),
+                                color: Colors.red,
                                 onPressed: () {
                                   _showCancelConfirmationDialog(reservation['id']);
                                 },

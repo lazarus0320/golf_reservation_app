@@ -65,7 +65,7 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('당일'),
                     style: ElevatedButton.styleFrom(
@@ -80,12 +80,13 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      minimumSize: const Size(50, 40),
                     ),
                     child: const Text('당일'),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('1주일'),
                     style: ElevatedButton.styleFrom(
@@ -100,12 +101,13 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      minimumSize: const Size(50, 40),
                     ),
                     child: const Text('1주일'),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: ElevatedButton(
                     onPressed: () => selectBtn('1개월'),
                     style: ElevatedButton.styleFrom(
@@ -120,42 +122,46 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      minimumSize: const Size(50, 40),
                     ),
                     child: const Text('1개월'),
                   ),
                 ),
-                const Spacer(),
-                PopupMenuButton<String>(
-                  onSelected: selectSortOption,
-                  itemBuilder: (BuildContext context) =>
-                  <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: '최근일자순',
-                      child: Text('최근일자순'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: '오래된순',
-                      child: Text('오래된순'),
-                    )
-                  ],
-                  child: Row(
-                    children: [
-                      Text('정렬: $selectedSortOption'),
-                      const Icon(Icons.arrow_drop_down),
-                    ],
-                  ),
-                )
               ],
             ),
-            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(left: 18.0),
-              child: Text(
-                '${resultLogData.length}건',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${resultLogData.length}건',
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
+                  PopupMenuButton<String>(
+                    onSelected: selectSortOption,
+                    itemBuilder: (BuildContext context) =>
+                    <PopupMenuEntry<String>>[
+                      const PopupMenuItem<String>(
+                        value: '최근일자순',
+                        child: Text('최근일자순'),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: '오래된순',
+                        child: Text('오래된순'),
+                      )
+                    ],
+                    child: Row(
+                      children: [
+                        Text('정렬: $selectedSortOption'),
+                        const Icon(Icons.arrow_drop_down),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 20),
+
             ListView.builder(
               reverse: true,
               shrinkWrap: true,

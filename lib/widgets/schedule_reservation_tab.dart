@@ -12,7 +12,7 @@ import '../controller/reservation_timeset_controller2.dart';
 import '../controller/reservation_timeset_controller3.dart';
 import '../widgets/ReservationPersonnelAndTimesetForm.dart';
 import '../widgets/reservation_btn.dart';
-import '../widgets/reservation_calendar_form2.dart';
+import '../widgets/reservation_calendar_form.dart';
 
 class ScheduleReservationTab extends StatefulWidget {
   // 예약 주문일 지정 달력 폼
@@ -33,7 +33,7 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
   @override
   void initState() {
     super.initState();
-    currentPage = ReservationCalendarForm2(); // Initialize with the first form
+    currentPage = ReservationCalendarForm(); // Initialize with the first form
   }
 
   void switchPage(Widget newPage) {
@@ -178,7 +178,7 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: List<Widget>.generate(2, (index) {
-                final isBlack = currentPage is ReservationCalendarForm2
+                final isBlack = currentPage is ReservationCalendarForm
                     ? (index == 0 ? true : false)
                     : true; // Check if the circle color is black
                 final circleColor = isBlack ? Colors.black : Colors.white;
@@ -229,7 +229,7 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: Column(
                         children: [
-                          currentPage is ReservationCalendarForm2
+                          currentPage is ReservationCalendarForm
                               ? ReservationBtn(
                             btnText: '다음',
                             onPressed: () {
@@ -240,7 +240,7 @@ class _ScheduleReservationTabState extends State<ScheduleReservationTab> {
                               : ReservationBtn(
                             btnText: '이전',
                             onPressed: () {
-                              switchPage(ReservationCalendarForm2());
+                              switchPage(ReservationCalendarForm());
                             },
                             backgroundColor: Colors.black,
                           ),
