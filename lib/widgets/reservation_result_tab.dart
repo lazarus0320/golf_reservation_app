@@ -21,7 +21,7 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
   Future<void> _fetchResultLogData() async {
     try {
       final response = await http.get(
-        Uri.parse("http://61.83.77.86:5000/reservation_table"),
+        Uri.parse("http://61.83.77.86:5000/reservation_result"),
       );
 
       if (response.statusCode == 200) {
@@ -182,13 +182,42 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
                           thickness: 1,
                           color: Colors.grey,
                         ),
-                        Text('스케줄 등록일시: ${data['selectedDay']}'),
-                        Text('인원: ${data['personnel']}'),
-                        Text(
-                            '예약일시: ${data['nextFuture']} ${data['futureTime']}'),
-                        Text('결과: ${data['result']}'),
-                        Text('코스: ${data['course']}'),
-                        Text('티업시간: ${data['teeUpTime']}'),
+                        Row(
+                          children: [
+                            const Text('스케줄 등록일시: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('${data['selectedDay']}'),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            const Text('인원: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('${data['personnel']}'),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            const Text('예약 일시: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(' ${data['nextFuture']} ${data['futureTime']}'),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            const Text('결과: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('${data['result']}'),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            const Text('코스: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('${data['course']}'),
+                          ]
+                        ),
+                        Row(
+                          children: [
+                            const Text('티업시간: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('${data['teeUpTime']}')
+                          ]
+                        ),
                       ],
                     ),
                   ),
