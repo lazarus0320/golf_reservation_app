@@ -74,7 +74,7 @@ class _ReservationPageState extends State<ReservationPage>
                 unselectedLabelColor: Colors.grey,
                 tabs: const [
                   Tab(text: '스케줄 예약'),
-                  Tab(text: '스케줄 조회/취소'),
+                  Tab(text: '스케줄 관리'),
                   Tab(text: '예약 결과'),
                 ],
               ),
