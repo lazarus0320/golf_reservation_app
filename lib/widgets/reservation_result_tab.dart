@@ -165,6 +165,7 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
             ListView.builder(
               reverse: true,
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: resultLogData.length,
               itemBuilder: (context, index) {
                 final data = resultLogData[index];
@@ -217,7 +218,7 @@ class _ReservationResultTabState extends State<ReservationResultTab> {
                             const Text('티업시간: ', style: TextStyle(fontWeight: FontWeight.bold)),
                             Text('${data['teeUpTime']}')
                           ]
-                        ),
+                        )
                       ],
                     ),
                   ),

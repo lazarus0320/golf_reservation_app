@@ -261,6 +261,7 @@ class _ScheduleCheckCancelTabState extends State<ScheduleCheckCancelTab> {
                 child: ListView.builder(
                   reverse: true,
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: reservationData.length,
                   itemBuilder: (context, index) {
                     final reservation = reservationData[index];

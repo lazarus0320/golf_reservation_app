@@ -32,14 +32,14 @@ class MyApp extends StatelessWidget {
         Get.lazyPut<LoginController>(() => LoginController());
         Get.lazyPut<ReservationPersonnelController>(() => ReservationPersonnelController());
       }),
-      scrollBehavior: const MaterialScrollBehavior().copyWith(
-        dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
-      ),
+      // scrollBehavior: const MaterialScrollBehavior().copyWith(
+      //   dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
+      // ),
       title: 'Golf Reservation',
       theme: ThemeData(
         // Your app theme data
       ),
-      initialRoute: '/reservation_page',
+      initialRoute: '/',
       getPages: [
         GetPage(name: "/", page: () => LoginPage()),
         GetPage(name: "/reservation_page", page: () => const ReservationPage()),
