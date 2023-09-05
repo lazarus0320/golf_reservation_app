@@ -45,7 +45,7 @@ class ReservationPersonnelAndTimesetForm extends StatelessWidget {
               '예약 시간',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),

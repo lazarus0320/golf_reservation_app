@@ -25,7 +25,7 @@ class ReservationCalendarForm extends StatelessWidget {
             border: Border.all(color: Colors.black),
           ),
           child: const Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(10.0),
             child: Text(
               '예약일',
               style: TextStyle(
@@ -86,7 +86,7 @@ class ReservationCalendarForm extends StatelessWidget {
                       border: Border.all(color: Colors.black),
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(10.0),
                       child: Text(
                         '우선순위',
                         style: TextStyle(
@@ -110,7 +110,7 @@ class ReservationCalendarForm extends StatelessWidget {
                       return Column(
                         children: [
                           PriorityListTile(
-                              title: '$formattedFutureDate 예약 접수', number: '01',),
+                              title: '$formattedFutureDate 예약', number: '01',),
                         ],
                       );
                     } else if (selectedDayOfWeek == 3) {
@@ -124,11 +124,12 @@ class ReservationCalendarForm extends StatelessWidget {
                       return Column(
                         children: [
                           PriorityListTile(
-                              title: '$formattedFutureDate 예약 접수', number: '01',),
+                              title: '$formattedFutureDate 예약', number: '01',
+                          ),
                           PriorityListTile(
-                              title: '$formattedNextSaturday 예약 접수', number: '02'),
+                              title: '$formattedNextSaturday 예약', number: '02'),
                           PriorityListTile(
-                              title: '$formattedNextSunday 예약 접수', number: '03'),
+                              title: '$formattedNextSunday 예약', number: '03'),
                         ],
                       );
                     } else {
